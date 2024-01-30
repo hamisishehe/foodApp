@@ -96,9 +96,6 @@ public class homefragment extends Fragment {
 
 
 
-                //creating adapter object and setting it to recyclerview
-//                ProductsAdapter adapter = new ProductsAdapter(MainActivity.this, productList);
-//                recyclerView.setAdapter(adapter);
             } catch (JSONException e) {
                 Log.e(TAG, "JSON parsing error: " + e.getMessage());
                 progressDialog.dismiss();
