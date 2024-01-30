@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context=".Login">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/formlayout"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:paddingTop="60dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Foodie"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="Welcome Back"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="15dp"/>
+
+
+        <EditText
+            android:id="@+id/emailinput"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:hint="johndoe@gmail.com"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/whiteopacity"
+            android:drawableStart="@drawable/baseline_email_24"
+            android:drawableTint="@color/whiteopacity"
+            android:drawablePadding="10dp"
+            android:background="@drawable/input"/>
+
+
+        <EditText
+            android:id="@+id/passwordinput"
+            android:paddingLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:hint="******"
+            android:password="true"
+            android:textColorHint="@color/whiteopacity"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:drawableTint="@color/whiteopacity"
+            android:drawablePadding="10dp"
+            android:background="@drawable/input"/>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="Login"
+            android:textSize="15dp"
+            android:background="@drawable/custom_button"
+  />
+
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_width="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_height="wrap_content"
+            />
+
+
+
+
+
+    </LinearLayout>
+
+
+   <RelativeLayout
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
+       >
+
+       <com.google.android.material.bottomnavigation.BottomNavigationView
+           android:layout_width="match_parent"
+           android:background="@color/background"
+           android:layout_height="wrap_content"
+           android:layout_alignParentBottom="true">
+
+
+           <LinearLayout
+               android:background="@color/background"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_marginTop="5dp"
+               android:layout_gravity="center"
+               android:gravity="center"
+               android:orientation="horizontal"
+
+               >
+               <TextView
+                   android:layout_width="160dp"
+                   android:layout_height="50dp"
+                   android:text="Don't have an account ?"
+                   android:textColor="@color/white"
+                   android:textSize="15dp"/>
+
+               <TextView
+                   android:id="@+id/registerbtn"
+                   android:layout_width="100dp"
+                   android:layout_height="50dp"
+                   android:text="Register here"
+                   android:textStyle="bold"
+                   android:textColor="@color/primary"
+                   android:textSize="15dp"/>
+
+
+
+           </LinearLayout>
+
+       </com.google.android.material.bottomnavigation.BottomNavigationView>
+   </RelativeLayout>
+
+
+
+</LinearLayout>
