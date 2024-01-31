@@ -6,6 +6,7 @@ import static com.android.volley.VolleyLog.TAG;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -14,9 +15,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,16 +27,15 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayList;
-
-
 public class homefragment extends Fragment {
-
 
     TextView viewname;
     View view;
@@ -41,6 +43,8 @@ public class homefragment extends Fragment {
     ArrayList<FoodModel> foodlist = new ArrayList<>();
     Foodadapter foodadapter;
     ProgressDialog progressDialog;
+
+    ShimmerFrameLayout shimmerFrameLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,10 +55,12 @@ public class homefragment extends Fragment {
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading..");
+        progressDialog.setMessage("Loading...");
+
 
         foodview = view.findViewById(R.id.foodview);
         foodadapter = new Foodadapter(getContext(),foodlist);
+        shimmerFrameLayout = view.findViewById(R.id.shimmerdisplay);
 
         foodview.setLayoutManager(new GridLayoutManager(getContext(), 2));
         foodview.setAdapter(foodadapter);
@@ -66,10 +72,11 @@ public class homefragment extends Fragment {
 
         viewname.setText("Hi,"+" "+fullname);
 
-        progressDialog.show();
+        shimmerFrameLayout.startShimmerAnimation();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.URL_FOOD, response -> {
 
-            progressDialog.dismiss();
+            shimmerFrameLayout.stopShimmerAnimation();
+            shimmerFrameLayout.setVisibility(View.GONE);
             try {
                 //converting the string to json array object
                 JSONArray array = new JSONArray(response);
@@ -121,4 +128,6 @@ public class homefragment extends Fragment {
         return view;
 
     }
+
+
 }

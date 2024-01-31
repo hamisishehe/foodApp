@@ -1,11 +1,14 @@
 package com.example.fooddelivery;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +32,28 @@ public class Foodadapter extends RecyclerView.Adapter<Foodadapter.viewHolder>{
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new viewHolder(LayoutInflater.from(context).inflate(R.layout.fooddisplay, null));
+        View view;
+        LayoutInflater inflater = LayoutInflater.from(context);
+        view = inflater.inflate(R.layout.fooddisplay,parent, false);
+        viewHolder myview = new viewHolder(view);
+        myview.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(context, DetailActivity.class);
+                FoodModel clickedItem = foodlist.get(viewType);
+                intent.putExtra("name", clickedItem.getName());
+                intent.putExtra("price", clickedItem.getPrice());
+                intent.putExtra("image", clickedItem.getImageurl());
+                intent.putExtra("id", clickedItem.getId());
+                context.startActivity(intent);
+
+            }
+        });
+
+
+        return  myview;
+
     }
 
     @Override
@@ -61,6 +85,8 @@ public class Foodadapter extends RecyclerView.Adapter<Foodadapter.viewHolder>{
             this.imageView = itemView.findViewById(R.id.imagedisplay);
             this.name = itemView.findViewById(R.id.namedisplay);
             this.price = itemView.findViewById(R.id.pricedisplay);
+
+
         }
     }
 }
