@@ -40,13 +40,17 @@ public class Foodadapter extends RecyclerView.Adapter<Foodadapter.viewHolder>{
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, DetailActivity.class);
-                FoodModel clickedItem = foodlist.get(viewType);
-                intent.putExtra("name", clickedItem.getName());
-                intent.putExtra("price", clickedItem.getPrice());
-                intent.putExtra("image", clickedItem.getImageurl());
-                intent.putExtra("id", clickedItem.getId());
-                context.startActivity(intent);
+                int adapterPosition = myview.getAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    FoodModel clickedItem = foodlist.get(adapterPosition);
+
+                    Intent intent = new Intent(context, DetailActivity.class);
+                    intent.putExtra("name", clickedItem.getName());
+                    intent.putExtra("price", clickedItem.getPrice());
+                    intent.putExtra("image", clickedItem.getImageurl());
+                    intent.putExtra("id", clickedItem.getId());
+                    context.startActivity(intent);
+                }
 
             }
         });
