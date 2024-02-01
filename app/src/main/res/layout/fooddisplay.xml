@@ -8,13 +8,13 @@
 
 
     <androidx.cardview.widget.CardView
-        app:cardElevation="20dp"
+        app:cardElevation="50dp"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:cardCornerRadius="20dp"
         android:layout_margin="5dp"
-        android:background="@color/primaryopacity"
-        android:elevation="10dp">
+        app:cardBackgroundColor="@color/background"
+        android:elevation="50dp">
 
         <ImageView
             android:layout_gravity="top"

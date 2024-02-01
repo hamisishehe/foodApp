@@ -66,11 +66,10 @@ public class homefragment extends Fragment {
         foodview.setAdapter(foodadapter);
 
 
-        viewname = view.findViewById(R.id.viewname);
+
         SharedPreferences sh = requireActivity().getSharedPreferences("auth", Context.MODE_PRIVATE);
         String fullname = sh.getString("FULLNAME", "");
 
-        viewname.setText("Hi,"+" "+fullname);
 
         shimmerFrameLayout.startShimmerAnimation();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.URL_FOOD, response -> {
@@ -96,16 +95,16 @@ public class homefragment extends Fragment {
                     ));
 
                     Log.d("response", "response"+foodlist.get(i).getName());
+                    shimmerFrameLayout.stopShimmerAnimation();
+                    shimmerFrameLayout.setVisibility(View.GONE);
                 }
 
                 foodadapter.notifyDataSetChanged();
 
 
-
-
             } catch (JSONException e) {
                 Log.e(TAG, "JSON parsing error: " + e.getMessage());
-                progressDialog.dismiss();
+
             }
 
 
@@ -116,11 +115,6 @@ public class homefragment extends Fragment {
 
         } );
         VolleySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
-
-
-
-
-
 
 
 

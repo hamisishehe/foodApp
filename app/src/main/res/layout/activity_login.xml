@@ -67,6 +67,7 @@
             android:layout_height="45dp"
             android:hint="******"
             android:password="true"
+            android:inputType="textPassword"
             android:textColorHint="@color/whiteopacity"
             android:drawableStart="@drawable/baseline_lock_24"
             android:drawableTint="@color/whiteopacity"
