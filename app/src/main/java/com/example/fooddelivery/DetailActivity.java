@@ -4,12 +4,17 @@ import static com.android.volley.VolleyLog.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -35,11 +40,19 @@ public class DetailActivity extends AppCompatActivity {
     private TextView tvQuantity;
      int quantity = 1; //
 
+    private Dialog dialog;
+
     // Initial quantity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+
+
+
+
+
 
         name = findViewById(R.id.d_namedisplay);
         price = findViewById(R.id.d_pricedisplay);
@@ -85,6 +98,9 @@ public class DetailActivity extends AppCompatActivity {
 
         int userid = sharedPreferences.getInt("USER_ID", 0);
 
+        AlertDialog dialog1 = createdialog();
+
+
 
 
         ordernow.setOnClickListener(new View.OnClickListener() {
@@ -99,14 +115,15 @@ public class DetailActivity extends AppCompatActivity {
                         JSONObject jsonResponse= new JSONObject(response);
 
                         if (jsonResponse.has("success")) {
-                            Toast.makeText(DetailActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
-//                            progressBar.setVisibility(View.GONE);
+
+                            dialog1.show();
+//                            Toast.makeText(DetailActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
+////                            progressBar.setVisibility(View.GONE);
                         } else if (jsonResponse.has("error")) {
                             // Registration failed
                             String errorMessage = jsonResponse.getString("error");
                             Log.e(TAG, "Order failed: " + errorMessage);
-                            Toast.makeText(DetailActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-//                            progressBar.setVisibility(View.GONE);
+                            dialog.show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -153,6 +170,29 @@ public class DetailActivity extends AppCompatActivity {
 
 
     }
+
+    AlertDialog createdialog(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Order Successfully Placed");
+
+        builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+
+            }
+        });
+        builder.setNegativeButton("Make another Order", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        return  builder.create();
+    }
+
+
 
 
 }
