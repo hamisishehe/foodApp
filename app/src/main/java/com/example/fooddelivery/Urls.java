@@ -6,5 +6,6 @@ public class Urls {
     public static final String URL_LOGIN= ROOT_URL + "login.php";
 
     public static final String URL_FOOD= ROOT_URL + "food.php";
+    public static final String URL_INSERTORDER= ROOT_URL + "insertorder.php";
 }
 
