@@ -15,6 +15,18 @@
         android:theme="@style/Theme.FoodDelivery"
         tools:targetApi="31">
         <activity
+            android:name=".OrdersView"
+            android:exported="false" />
+        <activity
+            android:name=".Orders"
+            android:exported="false" />
+        <activity
+            android:name=".Changepassword"
+            android:exported="false" />
+        <activity
+            android:name=".PersonaAddress"
+            android:exported="false" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false" />
         <activity

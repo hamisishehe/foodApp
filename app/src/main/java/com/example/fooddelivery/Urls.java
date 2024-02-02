@@ -7,5 +7,6 @@ public class Urls {
 
     public static final String URL_FOOD= ROOT_URL + "food.php";
     public static final String URL_INSERTORDER= ROOT_URL + "insertorder.php";
+    public static final String URL_ORDERS= ROOT_URL + "orders.php";
 }
 

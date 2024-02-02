@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private Dialog dialog;
 
+    ProgressBar orderprogress;
+
     // Initial quantity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class DetailActivity extends AppCompatActivity {
         backbutton = findViewById(R.id.backbutton);
         d_imagedisplay = findViewById(R.id.d_imagedisplay);
         tvQuantity = findViewById(R.id.tvQuantity);
+        orderprogress = findViewById(R.id.orderprogress);
 
         b_increment = findViewById(R.id.btnIncrease);
         b_decrement = findViewById(R.id.btnDecrease);
@@ -108,6 +112,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                orderprogress.setVisibility(View.VISIBLE);
                 double totalprice =  getprice * quantity;
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.URL_INSERTORDER, response -> {
 
@@ -118,7 +123,7 @@ public class DetailActivity extends AppCompatActivity {
 
                             dialog1.show();
 //                            Toast.makeText(DetailActivity.this, "Order Placed", Toast.LENGTH_SHORT).show();
-////                            progressBar.setVisibility(View.GONE);
+                            orderprogress.setVisibility(View.GONE);
                         } else if (jsonResponse.has("error")) {
                             // Registration failed
                             String errorMessage = jsonResponse.getString("error");
@@ -128,13 +133,13 @@ public class DetailActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Log.e(TAG, "JSON parsing error: " + e.getMessage());
-//                        progressBar.setVisibility(View.GONE);
+                         orderprogress.setVisibility(View.GONE);
                     }
 
                 }, error -> {
                     Toast.makeText(DetailActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
 
-//                    progressBar.setVisibility(View.GONE);
+                    orderprogress.setVisibility(View.GONE);
                 }){
 
 
@@ -191,6 +196,8 @@ public class DetailActivity extends AppCompatActivity {
         });
         return  builder.create();
     }
+
+
 
 
 
